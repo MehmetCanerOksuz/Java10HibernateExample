@@ -5,6 +5,7 @@ import com.caneroksuz.utility.HibernateUtility;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +48,13 @@ public class UserRepository implements ICrud <User> {
 
     @Override
     public List<User> findAll() {
-        return null;
+        //String sql="select * from tbl_user";
+        String hql="select u from User as u"; // hql ile nesne üzerinden çalışıyoruz..
+        session = HibernateUtility.getSessionFactory().openSession();
+        TypedQuery<User> typedQuery =session.createQuery(hql, User.class);
+        List<User> userList = typedQuery.getResultList();
+
+        return userList;
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         UserController userController = new UserController();
 
@@ -60,6 +60,8 @@ public class App {
                 .build();
 
         System.out.println(postController.save(post1));
+        Thread.sleep(2000);
+        userController.findAll().forEach(x-> System.out.println(x.getUsername()));
 
     }
 }

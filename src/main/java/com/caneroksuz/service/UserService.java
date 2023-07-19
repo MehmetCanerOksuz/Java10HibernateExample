@@ -33,7 +33,8 @@ public class UserService implements ICrud<User> {
 
     @Override
     public List<User> findAll() {
-        return null;
+
+        return userRepository.findAll();
     }
 
     @Override
