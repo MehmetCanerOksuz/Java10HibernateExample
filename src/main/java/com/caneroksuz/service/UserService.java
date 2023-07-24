@@ -16,8 +16,11 @@ public class UserService implements ICrud<User> {
         this.userRepository = new UserRepository();
     }
 
+
+
     @Override
     public User save(User user) {
+
         return userRepository.save(user);
     }
 
@@ -39,6 +42,20 @@ public class UserService implements ICrud<User> {
 
     @Override
     public Optional<User> findById(Long id) {
-        return Optional.empty();
+
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()){
+            System.out.println("Boyle bir kullanıcı bulunamdı");
+        }
+        return user;
+    }
+
+    public Optional<User> findByUsername(String username) {
+        Optional<User> user=userRepository.findByUsername(username);
+        if (user.isEmpty()){
+            System.out.println("Boyle bir kullanıcı bulunamdı");
+        }
+        return user;
+
     }
 }
